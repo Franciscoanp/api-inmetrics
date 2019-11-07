@@ -14,11 +14,12 @@ public class Celular implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	private Long id;
 	private String imei;
 	private String modelo;
 	private String valor;
 	private Integer numeroNotaFiscal;
-	
+
 	@JsonBackReference
 	@ManyToOne
 	public Contratante contratante;
@@ -27,12 +28,22 @@ public class Celular implements Serializable {
 
 	}
 
-	public Celular(String imei, String modelo, String valor, Integer numeroNotaFiscal, Contratante contratante) {
+	public Celular(Long id, String imei, String modelo, String valor, Integer numeroNotaFiscal,
+			Contratante contratante) {
+		this.id = id;
 		this.imei = imei;
 		this.modelo = modelo;
 		this.valor = valor;
 		this.numeroNotaFiscal = numeroNotaFiscal;
 		this.contratante = contratante;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Contratante getContratante() {

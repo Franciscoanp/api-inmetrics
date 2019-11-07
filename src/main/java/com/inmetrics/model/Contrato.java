@@ -1,11 +1,14 @@
 package com.inmetrics.model;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Contrato implements Serializable {
@@ -14,7 +17,9 @@ public class Contrato implements Serializable {
 
 	@Id
 	private Long id;
-	private String dataVencimento;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDateTime dataVencimento;
 
 	@OneToOne
 	@JoinColumn(name = "CONTRATANTE_ID")
@@ -24,7 +29,8 @@ public class Contrato implements Serializable {
 
 	}
 
-	public Contrato(Long id, String dataVencimento, Contratante contratante) {
+	public Contrato(Long id, LocalDateTime dataVencimento, Contratante contratante) {
+		super();
 		this.id = id;
 		this.dataVencimento = dataVencimento;
 		this.contratante = contratante;
@@ -38,11 +44,11 @@ public class Contrato implements Serializable {
 		this.id = id;
 	}
 
-	public String getDataVencimento() {
+	public LocalDateTime getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(String dataVencimento) {
+	public void setDataVencimento(LocalDateTime dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 

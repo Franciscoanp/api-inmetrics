@@ -23,7 +23,7 @@ public class Contratante implements Serializable{
 	
 	@JsonManagedReference
 	@OneToMany(mappedBy = "contratante")
-	private List<Celular> celulares;
+	private List<Celular> celular;
 	
 	public Contratante() {
 		
@@ -69,12 +69,12 @@ public class Contratante implements Serializable{
 		this.quantidadeParcelas = quantidadeParcelas;
 	}
 	
-	public List<Celular> getCelulares() {
-		return celulares;
+	public List<Celular> getCelular() {
+		return celular;
 	}
 
-	public void setCelulares(List<Celular> celulares) {
-		this.celulares = celulares;
+	public void setCelular(List<Celular> celular) {
+		this.celular = celular;
 	}
 
 	@Override
