@@ -1,6 +1,7 @@
 package com.inmetrics.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -17,7 +18,7 @@ public class Celular implements Serializable {
 	private Long id;
 	private String imei;
 	private String modelo;
-	private String valor;
+	private BigDecimal valor;
 	private Integer numeroNotaFiscal;
 
 	@JsonBackReference
@@ -28,7 +29,7 @@ public class Celular implements Serializable {
 
 	}
 
-	public Celular(Long id, String imei, String modelo, String valor, Integer numeroNotaFiscal,
+	public Celular(Long id, String imei, String modelo, BigDecimal valor, Integer numeroNotaFiscal,
 			Contratante contratante) {
 		this.id = id;
 		this.imei = imei;
@@ -70,11 +71,11 @@ public class Celular implements Serializable {
 		this.modelo = modelo;
 	}
 
-	public String getValor() {
+	public BigDecimal getValor() {
 		return valor;
 	}
 
-	public void setValor(String valor) {
+	public void setValor(BigDecimal valor) {
 		this.valor = valor;
 	}
 

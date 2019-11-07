@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
+import org.springframework.data.annotation.Transient;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
@@ -17,9 +19,15 @@ public class Contrato implements Serializable {
 
 	@Id
 	private Long id;
-	
+
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime dataVencimento;
+
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDateTime dataAbertura;
+
+	@Transient
+	private boolean cotacaoExpirada;
 
 	@OneToOne
 	@JoinColumn(name = "CONTRATANTE_ID")
@@ -29,11 +37,19 @@ public class Contrato implements Serializable {
 
 	}
 
-	public Contrato(Long id, LocalDateTime dataVencimento, Contratante contratante) {
-		super();
+	public Contrato(Long id, LocalDateTime dataVencimento, LocalDateTime dataAbertura, Contratante contratante) {
 		this.id = id;
 		this.dataVencimento = dataVencimento;
+		this.dataAbertura = dataAbertura;
 		this.contratante = contratante;
+	}
+
+	public boolean isCotacaoExpirada() {
+		return cotacaoExpirada;
+	}
+
+	public void setCotacaoExpirada(boolean cotacaoExpirada) {
+		this.cotacaoExpirada = cotacaoExpirada;
 	}
 
 	public Long getId() {
@@ -58,6 +74,14 @@ public class Contrato implements Serializable {
 
 	public void setContratante(Contratante contratante) {
 		this.contratante = contratante;
+	}
+
+	public LocalDateTime getDataAbertura() {
+		return dataAbertura;
+	}
+
+	public void setDataAbertura(LocalDateTime dataAbertura) {
+		this.dataAbertura = dataAbertura;
 	}
 
 	@Override
