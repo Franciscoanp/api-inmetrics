@@ -1,0 +1,103 @@
+package com.inmetrics.model;
+
+import java.io.Serializable;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+@Entity
+public class Celular implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	@Id
+	private String imei;
+	private String modelo;
+	private String valor;
+	private Integer numeroNotaFiscal;
+	
+	@JsonBackReference
+	@ManyToOne
+	public Contratante contratante;
+
+	public Celular() {
+
+	}
+
+	public Celular(String imei, String modelo, String valor, Integer numeroNotaFiscal, Contratante contratante) {
+		this.imei = imei;
+		this.modelo = modelo;
+		this.valor = valor;
+		this.numeroNotaFiscal = numeroNotaFiscal;
+		this.contratante = contratante;
+	}
+
+	public Contratante getContratante() {
+		return contratante;
+	}
+
+	public void setContratante(Contratante contratante) {
+		this.contratante = contratante;
+	}
+
+	public String getImei() {
+		return imei;
+	}
+
+	public void setImei(String imei) {
+		this.imei = imei;
+	}
+
+	public String getModelo() {
+		return modelo;
+	}
+
+	public void setModelo(String modelo) {
+		this.modelo = modelo;
+	}
+
+	public String getValor() {
+		return valor;
+	}
+
+	public void setValor(String valor) {
+		this.valor = valor;
+	}
+
+	public Integer getNumeroNotaFiscal() {
+		return numeroNotaFiscal;
+	}
+
+	public void setNumeroNotaFiscal(Integer numeroNotaFiscal) {
+		this.numeroNotaFiscal = numeroNotaFiscal;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((imei == null) ? 0 : imei.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Celular other = (Celular) obj;
+		if (imei == null) {
+			if (other.imei != null)
+				return false;
+		} else if (!imei.equals(other.imei))
+			return false;
+		return true;
+	}
+
+}
