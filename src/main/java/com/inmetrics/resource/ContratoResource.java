@@ -28,7 +28,6 @@ public class ContratoResource {
 		return repository.findAll();
 	}
 	
-	
 	@GetMapping(path = "/{codigo}" )
 	public Optional<Contrato> simulaContrato(@PathVariable Long codigo) {
 		return service.simulaContrato(codigo);

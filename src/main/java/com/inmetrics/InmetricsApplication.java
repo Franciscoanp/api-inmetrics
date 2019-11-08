@@ -43,7 +43,7 @@ public class InmetricsApplication implements CommandLineRunner{
 		
 		//Celulares
 		Celular celular = new Celular(1L, "012345", "Samsung S10", new BigDecimal(4500.00), 123, contratante);
-		Celular celular2 = new Celular(2L, "012345", "Iphone 8 plus", new BigDecimal(3800.00), 1221, contratante);
+		Celular celular2 = new Celular(2L, "012345", "Iphone 8 plus", new BigDecimal(3800.00), 1221, contratante2);
 		celularRepository.saveAll(Arrays.asList(celular, celular2));
 		
 		//Contratos

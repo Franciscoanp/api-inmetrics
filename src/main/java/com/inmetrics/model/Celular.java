@@ -29,8 +29,7 @@ public class Celular implements Serializable {
 
 	}
 
-	public Celular(Long id, String imei, String modelo, BigDecimal valor, Integer numeroNotaFiscal,
-			Contratante contratante) {
+	public Celular(Long id, String imei, String modelo, BigDecimal valor, Integer numeroNotaFiscal,	Contratante contratante) {
 		this.id = id;
 		this.imei = imei;
 		this.modelo = modelo;

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.inmetrics.model.Celular;
 import com.inmetrics.model.Contrato;
 import com.inmetrics.repository.CelularRepository;
 import com.inmetrics.repository.ContratoRepository;
@@ -31,11 +32,21 @@ public class ContratoService {
 		
 		verificaPrazoCotacao(contrato);
 		
-		LocalDateTime hoje = LocalDateTime.now();
-		
-		List<Celular> celularesVinculados = celularRepository.find
+		verificaImeiPossuiMaisDeUmUsuario(contrato);
 		
 		return contrato;
+	}
+
+
+	//Verifica se imei possui mais de um usuario nos ultimos 30 dias.
+	private void verificaImeiPossuiMaisDeUmUsuario(Optional<Contrato> contrato) {
+		long days = ChronoUnit.DAYS.between(contrato.get().getDataVencimento(), LocalDateTime.now());
+		
+		List<Celular> celularVinculado = celularRepository.findByImei(contrato.get().getContratante().getCelular().get(0).getImei());	
+	
+		if(celularVinculado.size() > 1 && days > 30) {
+			System.out.println("O imei " +contrato.get().getContratante().getCelular().get(0).getImei() + " está associado a mais de uma pessoa e não está com data vigente");
+		}
 	}
 
 	
