@@ -1,9 +1,13 @@
 package com.inmetrics.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
@@ -18,6 +22,7 @@ public class Contrato implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
@@ -29,19 +34,24 @@ public class Contrato implements Serializable {
 	@Transient
 	private boolean cotacaoExpirada;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "CONTRATANTE_ID")
 	private Contratante contratante;
 
+	
+	private BigDecimal valorContrato;
+	
 	public Contrato() {
-
+		
 	}
 
-	public Contrato(Long id, LocalDateTime dataVencimento, LocalDateTime dataAbertura, Contratante contratante) {
+	public Contrato(Long id, LocalDateTime dataVencimento, LocalDateTime dataAbertura, Contratante contratante,
+			BigDecimal valorContrato) {
 		this.id = id;
 		this.dataVencimento = dataVencimento;
 		this.dataAbertura = dataAbertura;
 		this.contratante = contratante;
+		this.valorContrato = valorContrato;
 	}
 
 	public boolean isCotacaoExpirada() {
@@ -82,6 +92,14 @@ public class Contrato implements Serializable {
 
 	public void setDataAbertura(LocalDateTime dataAbertura) {
 		this.dataAbertura = dataAbertura;
+	}
+
+	public BigDecimal getValorContrato() {
+		return valorContrato;
+	}
+
+	public void setValorContrato(BigDecimal valorContrato) {
+		this.valorContrato = valorContrato;
 	}
 
 	@Override

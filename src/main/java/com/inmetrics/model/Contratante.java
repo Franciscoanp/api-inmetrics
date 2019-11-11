@@ -3,7 +3,10 @@ package com.inmetrics.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -15,6 +18,7 @@ public class Contratante implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	private String documento;
 	private Integer idade;
@@ -22,7 +26,7 @@ public class Contratante implements Serializable{
 	private Integer quantidadeParcelas;
 	
 	@JsonManagedReference
-	@OneToMany(mappedBy = "contratante")
+	@OneToMany(mappedBy = "contratante", cascade = CascadeType.PERSIST)
 	private List<Celular> celular;
 	
 	public Contratante() {

@@ -42,13 +42,13 @@ public class InmetricsApplication implements CommandLineRunner{
 		contratanteRepository.saveAll(Arrays.asList(contratante, contratante2));
 		
 		//Celulares
-		Celular celular = new Celular(1L, "012345", "Samsung S10", new BigDecimal(4500.00), 123, contratante);
-		Celular celular2 = new Celular(2L, "012345", "Iphone 8 plus", new BigDecimal(3800.00), 1221, contratante2);
+		Celular celular = new Celular(1L, "012345", "Samsung S10", new BigDecimal(500.00), 123, contratante);
+		Celular celular2 = new Celular(2L, "012345", "Iphone 8 plus", new BigDecimal(500.00), 1221, contratante2);
 		celularRepository.saveAll(Arrays.asList(celular, celular2));
 		
 		//Contratos
 		LocalDateTime hoje = LocalDateTime.now();
-		Contrato  contrato = new Contrato(1L, hoje.minusMonths(1), hoje.minusDays(30), contratante);
+		Contrato  contrato = new Contrato( 1L, hoje.minusMonths(1), hoje.minusDays(30), contratante, new BigDecimal(500.00));
 		contratoRepository.saveAll(Arrays.asList(contrato));
 		
 	}
