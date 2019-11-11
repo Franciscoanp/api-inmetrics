@@ -1,6 +1,7 @@
 package com.inmetrics;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 
@@ -47,7 +48,7 @@ public class InmetricsApplication implements CommandLineRunner{
 		celularRepository.saveAll(Arrays.asList(celular, celular2));
 		
 		//Contratos
-		LocalDateTime hoje = LocalDateTime.now();
+		LocalDate hoje = LocalDate.now();
 		Contrato  contrato = new Contrato( 1L, hoje.minusMonths(1), hoje.minusDays(30), contratante, new BigDecimal(500.00));
 		contratoRepository.saveAll(Arrays.asList(contrato));
 		

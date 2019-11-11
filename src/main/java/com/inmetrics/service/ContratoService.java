@@ -44,7 +44,6 @@ public class ContratoService {
 	}
 
 
-
 	private void calculaPorcentagemEquipamento(Optional<Contrato> contrato) {
 		Double valorCalculado = null;
 		Double valorPorcentagemEquipamento = null;

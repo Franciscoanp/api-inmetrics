@@ -2,6 +2,7 @@ package com.inmetrics.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
@@ -26,10 +27,10 @@ public class Contrato implements Serializable {
 	private Long id;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDateTime dataVencimento;
+	private LocalDate dataVencimento;
 
 	@JsonFormat(pattern = "dd/MM/yyyy")
-	private LocalDateTime dataAbertura;
+	private LocalDate dataAbertura;
 
 	@Transient
 	private boolean cotacaoExpirada;
@@ -45,7 +46,7 @@ public class Contrato implements Serializable {
 		
 	}
 
-	public Contrato(Long id, LocalDateTime dataVencimento, LocalDateTime dataAbertura, Contratante contratante,
+	public Contrato(Long id, LocalDate dataVencimento, LocalDate dataAbertura, Contratante contratante,
 			BigDecimal valorContrato) {
 		this.id = id;
 		this.dataVencimento = dataVencimento;
@@ -70,11 +71,11 @@ public class Contrato implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataVencimento() {
+	public LocalDate getDataVencimento() {
 		return dataVencimento;
 	}
 
-	public void setDataVencimento(LocalDateTime dataVencimento) {
+	public void setDataVencimento(LocalDate dataVencimento) {
 		this.dataVencimento = dataVencimento;
 	}
 
@@ -86,11 +87,11 @@ public class Contrato implements Serializable {
 		this.contratante = contratante;
 	}
 
-	public LocalDateTime getDataAbertura() {
+	public LocalDate getDataAbertura() {
 		return dataAbertura;
 	}
 
-	public void setDataAbertura(LocalDateTime dataAbertura) {
+	public void setDataAbertura(LocalDate dataAbertura) {
 		this.dataAbertura = dataAbertura;
 	}
 
