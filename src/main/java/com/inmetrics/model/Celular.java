@@ -21,7 +21,7 @@ public class Celular implements Serializable {
 	private Long id;
 	private String imei;
 	private String modelo;
-	private BigDecimal valor;
+	private BigDecimal valorAparelho;
 	private Integer numeroNotaFiscal;
 
 	@JsonBackReference
@@ -32,11 +32,11 @@ public class Celular implements Serializable {
 
 	}
 
-	public Celular(Long id, String imei, String modelo, BigDecimal valor, Integer numeroNotaFiscal,	Contratante contratante) {
+	public Celular(Long id, String imei, String modelo, BigDecimal valorAparelho, Integer numeroNotaFiscal,	Contratante contratante) {
 		this.id = id;
 		this.imei = imei;
 		this.modelo = modelo;
-		this.valor = valor;
+		this.valorAparelho = valorAparelho;
 		this.numeroNotaFiscal = numeroNotaFiscal;
 		this.contratante = contratante;
 	}
@@ -73,12 +73,12 @@ public class Celular implements Serializable {
 		this.modelo = modelo;
 	}
 
-	public BigDecimal getValor() {
-		return valor;
+	public BigDecimal getValorAparelho() {
+		return valorAparelho;
 	}
 
-	public void setValor(BigDecimal valor) {
-		this.valor = valor;
+	public void setValorAparelho(BigDecimal valorAparelho) {
+		this.valorAparelho = valorAparelho;
 	}
 
 	public Integer getNumeroNotaFiscal() {

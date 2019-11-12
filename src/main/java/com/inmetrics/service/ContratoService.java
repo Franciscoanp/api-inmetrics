@@ -1,7 +1,6 @@
 package com.inmetrics.service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -41,8 +40,6 @@ public class ContratoService {
 		
 		calculaPorcentagemEquipamento(contrato);
 		
-		
-		
 		return contrato;
 	}
 
@@ -51,7 +48,7 @@ public class ContratoService {
 		Double valorCalculado = null;
 		Double valorPorcentagemEquipamento = null;
 		
-		BigDecimal valorCelular = contrato.get().getContratante().getCelular().get(0).getValor();
+		BigDecimal valorCelular = contrato.get().getContratante().getCelular().get(0).getValorAparelho();
 		
 		valorPorcentagemEquipamento = calculaPercentualPorValor(valorPorcentagemEquipamento, valorCelular);
 		
