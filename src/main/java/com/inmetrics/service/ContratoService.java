@@ -1,6 +1,8 @@
 package com.inmetrics.service;
 
 import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
@@ -40,6 +42,7 @@ public class ContratoService {
 		calculaPorcentagemEquipamento(contrato);
 		
 		
+		
 		return contrato;
 	}
 
@@ -54,7 +57,58 @@ public class ContratoService {
 		
 		valorCalculado = calculaPercentualPorIdade(contrato, valorCalculado, valorPorcentagemEquipamento);
 		
+		if(contrato.get().getContratante().getQuantidadeParcelas() == 2) {
+			valorCalculado = (valorCalculado * 0.001) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 3) {
+			valorCalculado = (valorCalculado * 0.0015) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 4) {
+			valorCalculado = (valorCalculado * 0.00156) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 5) {
+			valorCalculado = (valorCalculado * 0.00157) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 6) {
+			valorCalculado = (valorCalculado * 0.00158) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 7) {
+			valorCalculado = (valorCalculado * 0.00159) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 8) {
+			valorCalculado = (valorCalculado * 0.00160) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 9) {
+			valorCalculado = (valorCalculado * 0.00161) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 10) {
+			valorCalculado = (valorCalculado * 0.00162) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 11) {
+			valorCalculado = (valorCalculado * 0.00163) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+			
+		}else if(contrato.get().getContratante().getQuantidadeParcelas() == 12) {
+			valorCalculado = (valorCalculado * 0.00164) + valorCalculado;
+			realizaCalculoContratoComJuros(contrato, valorCalculado);
+		}
+		
 		System.out.println("valor calculado: " +valorCalculado);
+	}
+
+
+	private void realizaCalculoContratoComJuros(Optional<Contrato> contrato, Double valorCalculado) {
+		contrato.get().setValorContrato(new BigDecimal(valorCalculado).add(contrato.get().getValorContrato()));
+		contrato.get().setValorContrato(contrato.get().getValorContrato().setScale(2, RoundingMode.HALF_UP));
 	}
 
 

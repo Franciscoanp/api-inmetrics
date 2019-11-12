@@ -37,7 +37,7 @@ public class InmetricsApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		
 		//Contratantes
-		Contratante contratante = new Contratante(1L, "RG 1809060507", 25, "21 9999-8888", 12);
+		Contratante contratante = new Contratante(1L, "RG 1809060507", 25, "21 9999-8888", 3);
 		Contratante contratante2 = new Contratante(2L, "RG 231321321", 40, "21 8888 - 99999", 2);
 		
 		contratanteRepository.saveAll(Arrays.asList(contratante, contratante2));
